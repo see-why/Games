@@ -1,4 +1,4 @@
-package hello;
+package hangman;
 
 public class App {
 
@@ -6,7 +6,6 @@ public class App {
 		Hangman game = new Hangman();
 		game.run();
 		game.close();
-		
 	}
  	
 }

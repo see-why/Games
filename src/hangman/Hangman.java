@@ -1,4 +1,4 @@
-package hello;
+package hangman;
 
 import java.util.Scanner;
 
