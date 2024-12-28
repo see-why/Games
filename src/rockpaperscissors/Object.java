@@ -1,6 +1,6 @@
 package rockpaperscissors;
 
-public class Object {
+public class Object implements Comparable<Object> {
     private  int id;
     private String name;
     
@@ -28,12 +28,13 @@ public class Object {
         this.id = id;
     }
     
-    public int comparesTo(Object other) {
-    	return comparisons[this.id][other.id];
-    }
-
 	@Override
 	public String toString() {
 		return "Object [id=" + id + ", name=" + getName() + "]";
 	}
+
+	@Override
+	public int compareTo(Object other) {
+    	return comparisons[this.id][other.id];
+    }
 }
