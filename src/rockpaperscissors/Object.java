@@ -4,7 +4,7 @@ public class Object implements Comparable<Object> {
     private  int id;
     private String name;
     
-    private int[][] comparisons = {
+    private final int[][] comparisons = {
     			// 		rock 	paper 	scissors
     	/*rock*/ 	{	0,		-1, 		1	},
     	/*paper*/ 	{	1,		 0, 		-1	},

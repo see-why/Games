@@ -4,8 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RockPaperScissors {
-	private Object[] objects = { new Rock(), new Paper(), new Scissors() };
-	private Scanner scanner = new Scanner(System.in);
+	private final Object[] objects = { new Rock(), new Paper(), new Scissors() };
+	private final Scanner scanner = new Scanner(System.in);
 
 	public void run() {
 		int playerScore = 0;

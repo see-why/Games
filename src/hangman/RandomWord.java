@@ -11,8 +11,8 @@ import java.util.Random;
  */
 
 public class RandomWord {
-	private Random random = new Random();
-	private String[] words = { "letter",
+	private final Random random = new Random();
+	private final String[] words = { "letter",
 			"misfortune", 
 			"callous", 
 			"wretchedness", 
@@ -24,7 +24,7 @@ public class RandomWord {
 			"contrary"
 			};
 	private String chosenWord;
-	private char[] characters;
+	private final char[] characters;
 	
 	public RandomWord() {
 		setChosenWord(words[random.nextInt(words.length)]);

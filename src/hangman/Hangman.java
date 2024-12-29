@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Hangman {
 	private boolean running = true;
-	private RandomWord word = new RandomWord();
-	private Scanner scanner = new Scanner(System.in);
+	private final RandomWord word = new RandomWord();
+	private final Scanner scanner = new Scanner(System.in);
 	private int triesLeft = 5;
 
 	public void run() {
