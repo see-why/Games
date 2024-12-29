@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class RockPaperScissors {
 	private final Object[] objects = { new Rock(), new Paper(), new Scissors() };
-	private final Scanner scanner = new Scanner(System.in);
 
 	public void run() {
 		int playerScore = 0;
@@ -13,29 +12,30 @@ public class RockPaperScissors {
 		
 		System.out.println("Game Running");
 
-		while(counter > 0) {
-			System.out.println("Choose your option...");
-			System.out.println("1 for Rock, 2 for Paper and 3 for Scissors");
-			System.out.print("> ");
-			
-			Random random = new Random();
-			var obj1 = objects[random.nextInt(objects.length)];
-			
-			int choice = scanner.nextInt();
-			Object obj2 = getObject(choice);
+		try (Scanner scanner = new Scanner(System.in)) {
+			while(counter > 0) {
+				System.out.println("Choose your option...");
+				System.out.println("1 for Rock, 2 for Paper and 3 for Scissors");
+				System.out.print("> ");
+				
+				Random random = new Random();
+				var obj1 = objects[random.nextInt(objects.length)];
+				
+				int choice = scanner.nextInt();
+				Object obj2 = getObject(choice);
 
-			System.out.printf("You chose: %s \n", obj2.getName());
-			System.out.printf("Computer chose: %s \n", obj1.getName());
-			
-			int comparisonIndex = obj1.compareTo(obj2);
-			playerScore += comparisonIndex;
+				System.out.printf("You chose: %s \n", obj2.getName());
+				System.out.printf("Computer chose: %s \n", obj1.getName());
+				
+				int comparisonIndex = obj1.compareTo(obj2);
+				playerScore += comparisonIndex;
 
-			System.out.println(printResult(comparisonIndex));
-			counter--;
+				System.out.println(printResult(comparisonIndex));
+				counter--;
+			}
+			
+			System.out.println(printFinalResult(playerScore));
 		}
-		
-		System.out.println(printFinalResult(playerScore));
-		scanner.close();
 	}
 	
 	private Object getObject(int index) {
