@@ -27,10 +27,11 @@ public class RandomWord {
 	private final char[] characters;
 	
 	public RandomWord() {
-		setChosenWord(words[random.nextInt(words.length)]);
-		characters = new char[getChosenWord().length()];
+		this.chosenWord = words[random.nextInt(words.length)];
+		characters = new char[this.chosenWord.length()];
 	}
 
+	@Override
 	public String toString() {
 		StringBuilder text = new StringBuilder();
 
