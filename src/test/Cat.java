@@ -21,10 +21,8 @@ public class Cat extends Animal {
 	public String toString() {
 		return String.format("Cat: [id: %d, name: %s]", id, name);
 	}
-	
-	
+
 	public static int getCount() {
 		return count;
 	}
-
 }
