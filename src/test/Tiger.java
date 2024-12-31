@@ -10,6 +10,7 @@ public class Tiger extends Cat {
 		System.out.printf("A %s(Animal): eating", this);
 	}
 	
+	@Override
 	public String toString() {
 		return String.format("Tiger: [id: %d, name: %s]", id, name);
 	}
