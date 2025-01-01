@@ -34,6 +34,6 @@ public class TimerUtil {
             timer.cancel();
             executor.shutdown();
             System.exit(0);
-        }, 11, TimeUnit.MINUTES);
+        }, 10, TimeUnit.MINUTES);
 	}
 }
