@@ -3,8 +3,10 @@ package rockpaperscissors;
 import java.util.Random;
 import java.util.Scanner;
 
+import rockpaperscissors.enums.Choice;
+
 public class RockPaperScissors {
-	private final Object[] objects = { new Rock(), new Paper(), new Scissors() };
+	private final Choice[] choices = Choice.values();
 
 	public void run() {
 		int playerScore = 0;
@@ -19,15 +21,15 @@ public class RockPaperScissors {
 				System.out.print("> ");
 				
 				Random random = new Random();
-				var obj1 = objects[random.nextInt(objects.length)];
+				var obj1 = choices[random.nextInt(choices.length)];
 				
 				int choice = scanner.nextInt();
-				Object obj2 = getObject(choice);
+				Choice obj2 = getObject(choice);
 
-				System.out.printf("You chose: %s \n", obj2.getName());
-				System.out.printf("Computer chose: %s \n", obj1.getName());
+				System.out.printf("You chose: %s \n", obj2.toString());
+				System.out.printf("Computer chose: %s \n", obj1.toString());
 				
-				int comparisonIndex = obj1.compareTo(obj2);
+				int comparisonIndex = obj2.beats(obj1);
 				playerScore += comparisonIndex;
 
 				System.out.println(printResult(comparisonIndex));
@@ -38,12 +40,12 @@ public class RockPaperScissors {
 		}
 	}
 	
-	private Object getObject(int index) {
+	private Choice getObject(int index) {
 		if (index == 1 || index == 2) {
-			return objects[index - 1];
+			return choices[index - 1];
 		}
 
-		return objects[2];
+		return choices[2];
 	}
 	
 	private String printResult(int comparisonIndex) {
