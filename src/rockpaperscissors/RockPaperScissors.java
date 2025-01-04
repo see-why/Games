@@ -1,8 +1,8 @@
 package rockpaperscissors;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-
 import rockpaperscissors.enums.Choice;
 
 public class RockPaperScissors {
@@ -13,31 +13,49 @@ public class RockPaperScissors {
 		int counter = 3;
 		
 		System.out.println("Game Running");
-
 		try (Scanner scanner = new Scanner(System.in)) {
 			while(counter > 0) {
-				System.out.println("Choose your option...");
-				System.out.println("1 for Rock, 2 for Paper and 3 for Scissors");
-				System.out.print("> ");
-				
 				Random random = new Random();
 				var obj1 = choices[random.nextInt(choices.length)];
 				
-				int choice = scanner.nextInt();
+				int choice = getValidSelection(scanner);
 				Choice obj2 = getObject(choice);
-
+	
 				System.out.printf("You chose: %s \n", obj2.toString());
 				System.out.printf("Computer chose: %s \n", obj1.toString());
 				
 				int comparisonIndex = obj2.beats(obj1);
 				playerScore += comparisonIndex;
-
+	
 				System.out.println(printResult(comparisonIndex));
 				counter--;
 			}
-			
+				
 			System.out.println(printFinalResult(playerScore));
 		}
+
+	}
+
+	private int getValidSelection(Scanner scanner) {
+		int choice = 0;
+		while (true) {
+			try {
+				System.out.println("Choose your option...");
+				System.out.println("1 for Rock, 2 for Paper and 3 for Scissors");
+				System.out.print("> ");
+
+				choice = Integer.parseInt(scanner.nextLine());
+
+				if (choice <= 0 || choice > 3) {
+					throw new NumberFormatException();
+				}
+
+				break;
+			} catch (NumberFormatException | InputMismatchException e) {
+				System.out.println("Invalid Selection.");
+			}
+		}
+		return choice;
 	}
 	
 	private Choice getObject(int index) {
