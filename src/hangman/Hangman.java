@@ -35,10 +35,22 @@ public class Hangman {
 	}
 	
 	void getUserInput() {
-		System.out.println("Guess a letter: ");
-		String guess = scanner.next();
-		
-		word.addGuess(guess.charAt(0));
+		while(true) {
+			try {
+				System.out.println("Guess a letter: ");
+				String guess = scanner.next();
+				
+				if (guess.length() != 1 || !Character.isLetter(guess.charAt(0))) {
+					System.out.println("Please enter a single letter.");
+					continue;
+				}
+				
+				word.addGuess(guess.charAt(0));
+				break;
+			} catch (Exception e) {
+				System.out.println("Invalid Input, alphabet expected.");
+			}
+		}
 	}
 	
 	void checkUserInput() {
