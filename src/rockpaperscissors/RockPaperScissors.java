@@ -6,88 +6,81 @@ import java.util.Scanner;
 import rockpaperscissors.enums.Choice;
 
 public class RockPaperScissors {
+	private static final int ROUNDS = 3;
+	private static final String PROMPT_MESSAGE = 
+		"Choose your option...\n1 for Rock, 2 for Paper and 3 for Scissors\n> ";
 	private final Choice[] choices = Choice.values();
+	private final Random random = new Random();
 
 	public void run() {
 		int playerScore = 0;
-		int counter = 3;
+		int roundsLeft = ROUNDS;
 		
 		System.out.println("Game Running");
 		try (Scanner scanner = new Scanner(System.in)) {
-			while(counter > 0) {
-				Random random = new Random();
-				var obj1 = choices[random.nextInt(choices.length)];
+			while (roundsLeft > 0) {
+				Choice computerChoice = getComputerChoice();
+				Choice playerChoice = getPlayerChoice(scanner);
 				
-				int choice = getValidSelection(scanner);
-				Choice obj2 = getObject(choice);
-	
-				System.out.printf("You chose: %s \n", obj2.toString());
-				System.out.printf("Computer chose: %s \n", obj1.toString());
-				
-				int comparisonIndex = obj2.beats(obj1);
-				playerScore += comparisonIndex;
-	
-				System.out.println(printResult(comparisonIndex));
-				counter--;
+				displayChoices(playerChoice, computerChoice);
+				playerScore += playRound(playerChoice, computerChoice);
+				roundsLeft--;
 			}
-				
-			System.out.println(printFinalResult(playerScore));
+			System.out.println(getFinalResult(playerScore));
 		}
+	}
 
+	private Choice getComputerChoice() {
+		return choices[random.nextInt(choices.length)];
+	}
+
+	private Choice getPlayerChoice(Scanner scanner) {
+		int choice = getValidSelection(scanner);
+		return (choice == 3) ? choices[2] : choices[choice - 1];
+	}
+
+	private void displayChoices(Choice playerChoice, Choice computerChoice) {
+		System.out.printf("You chose: %s%nComputer chose: %s%n", 
+			playerChoice, computerChoice);
+	}
+
+	private int playRound(Choice playerChoice, Choice computerChoice) {
+		int result = playerChoice.beats(computerChoice);
+		System.out.println(getRoundResult(result));
+		return result;
 	}
 
 	private int getValidSelection(Scanner scanner) {
-		int choice = 0;
 		while (true) {
 			try {
-				System.out.println("Choose your option...");
-				System.out.println("1 for Rock, 2 for Paper and 3 for Scissors");
-				System.out.print("> ");
-
-				choice = Integer.parseInt(scanner.nextLine());
-
-				if (choice <= 0 || choice > 3) {
-					throw new NumberFormatException();
+				System.out.print(PROMPT_MESSAGE);
+				int choice = Integer.parseInt(scanner.nextLine());
+				
+				if (choice > 0 && choice <= 3) {
+					return choice;
 				}
-
-				break;
+				throw new NumberFormatException();
 			} catch (NumberFormatException | InputMismatchException e) {
 				System.out.println("Invalid Selection.");
 			}
 		}
-		return choice;
 	}
 	
-	private Choice getObject(int index) {
-		if (index == 1 || index == 2) {
-			return choices[index - 1];
-		}
-
-		return choices[2];
+	private String getRoundResult(int comparisonIndex) {
+		return switch (comparisonIndex) {
+			case -1 -> "You lost this round!";
+			case 0 -> "It's a tie!";
+			case 1 -> "You won this round!";
+			default -> throw new IllegalStateException("Unexpected value: " + comparisonIndex);
+		};
 	}
 	
-	private String printResult(int comparisonIndex) {
-		if (comparisonIndex == -1) {
-			return "You lost this round!.";
-		}
-		
-		if (comparisonIndex == 0) {
-			return "It's a tie!.";
-		}
-		
-		return "You won this round!.";
-		
-	}
-	
-	private String printFinalResult(int playerScore) {
-		if (playerScore > 0) {
-			return "You are the overall winner!!!!.";
-		}
-		
-		if (playerScore < 0) {
-			return "Sorry, Computer is the champ!!!!.";
-		}
-		
-		return "Wheew, it an overall tie!!!!.";
+	private String getFinalResult(int playerScore) {
+		return switch (Integer.compare(playerScore, 0)) {
+			case 1 -> "You are the overall winner!!!!";
+			case -1 -> "Sorry, Computer is the champ!!!!";
+			case 0 -> "Whew, it's an overall tie!!!!";
+			default -> throw new IllegalStateException("Unexpected score: " + playerScore);
+		};
 	}
 }
