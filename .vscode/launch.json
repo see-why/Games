@@ -6,9 +6,23 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "hangman.App",
+            "projectName": "Games"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "rockpaperscissors.App",
+            "projectName": "Games"
+        },
+        {
+            "type": "java",
             "name": "Debug Test",
             "request": "launch",
-            "mainClass": "test.checkLogic",
+            "mainClass": "test.checkLogic"
         }
     ]
 }
