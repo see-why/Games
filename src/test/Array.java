@@ -20,4 +20,18 @@ public class Array<T> {
 		return array[index];
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getName()).append('@').append(Integer.toHexString(hashCode()));
+		sb.append("\n");
+		for (T t: array) {
+			if (t != null) {
+				sb.append(t.toString());
+				sb.append("\n");
+			}
+		}
+		return sb.toString();
+	}
+
 }
