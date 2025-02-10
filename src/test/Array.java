@@ -19,6 +19,10 @@ public class Array<T> {
 	public T get(int index) {
 		return array[index];
 	}
+	
+	public int size() {
+		return array.length;
+	}
 
 	@Override
 	public String toString() {
