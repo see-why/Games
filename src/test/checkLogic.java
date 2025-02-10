@@ -16,6 +16,15 @@ public class checkLogic {
 			System.out.println();
 			System.out.println();
 		}
+		
+		Array<Cat> cats = new Array<>(5);
+		cats.add(a2);
+		cats.add(new Cat("miguel"));
+		
+		Cat cat1 = cats.get(0);
+		System.out.println(cat1);	
+		Cat cat2 = cats.get(1);
+		System.out.println(cat2);	
 	}
 
 }
