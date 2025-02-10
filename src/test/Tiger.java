@@ -7,7 +7,7 @@ public class Tiger extends Cat {
 	
 	@Override
 	public void eat() {
-		System.out.printf("A %s(Animal): eating", this);
+		System.out.printf("A %s(Animal): eating \n", this);
 	}
 	
 	@Override
