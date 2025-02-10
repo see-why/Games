@@ -17,7 +17,7 @@ public class checkLogic {
 			System.out.println();
 		}
 		
-		Array<Cat> cats = new Array<>(5);
+		Array<Cat> cats = new Array<>(2);
 		cats.add(a2);
 		cats.add(new Cat("miguel"));
 		
@@ -27,6 +27,22 @@ public class checkLogic {
 		System.out.println(cat2);	
 
 		System.out.println(cats);
+
+		var animalArray = new Array<Animal>(2);
+		animalArray.add(a1);
+		animalArray.add(new Tiger("shere khan"));
+
+		allEat(animalArray);
+		allEat(cats);
+	}
+
+	public static void allEat(Array<? extends Animal> animals) {
+		int size = animals.size();
+		
+		for (int i=0; i<size; i++) {
+			animals.get(i).eat();
+		}
+
 	}
 	
 	public static <T> T find(Array<T> arr, String text) {
