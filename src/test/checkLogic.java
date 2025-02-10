@@ -28,5 +28,18 @@ public class checkLogic {
 
 		System.out.println(cats);
 	}
+	
+	public static <T> T find(Array<T> arr, String text) {
+		int size = arr.size();
+		
+		for (int i=0; i<size; i++) {
+			var obj = arr.get(i);
+			if (obj.toString().contains(text)) {
+				return obj;
+			}
+		}
+		
+		return null;
+	}
 
 }
