@@ -25,6 +25,8 @@ public class checkLogic {
 		System.out.println(cat1);	
 		Cat cat2 = cats.get(1);
 		System.out.println(cat2);	
+
+		System.out.println(cats);
 	}
 
 }
