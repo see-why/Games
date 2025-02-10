@@ -21,7 +21,7 @@ public class Array<T> {
 	}
 	
 	public int size() {
-		return array.length;
+		return position;
 	}
 
 	@Override
@@ -30,10 +30,8 @@ public class Array<T> {
 		sb.append(getClass().getName()).append('@').append(Integer.toHexString(hashCode()));
 		sb.append("\n");
 		for (T t: array) {
-			if (t != null) {
-				sb.append(t.toString());
-				sb.append("\n");
-			}
+			sb.append(t.toString());
+			sb.append("\n");
 		}
 		return sb.toString();
 	}
