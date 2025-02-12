@@ -36,4 +36,10 @@ public class Array<T> {
 		return sb.toString();
 	}
 
+	public void addAll(Array<? extends T> arr) {
+		for (int i=0; i<arr.size(); i++) {
+			add(arr.get(i));
+		}
+	}
+
 }
