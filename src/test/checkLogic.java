@@ -58,4 +58,12 @@ public class checkLogic {
 		return null;
 	}
 
+	public static void copy(Array<? extends Animal> src, Array<? super Animal> dest) {
+		int size = src.size();
+		
+		for (int i=0; i<size; i++) {
+			dest.add(src.get(i));
+		}
+	}
+
 }
